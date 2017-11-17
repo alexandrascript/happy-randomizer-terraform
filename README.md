@@ -13,7 +13,7 @@ This repository is an extension of the [Happy Randomizer](https://github.com/hey
 
 ## Modifying the variables
 
-Replace the following variables with your information:
+Replace the following variables in `variables.tf` with your information:
 
 ```hcl
 variable "triton_account" {
@@ -32,4 +32,5 @@ variable "dc_name" {
 ## Additional resources
 
 + [Triton Terraform provider docs](https://github.com/terraform-providers/terraform-provider-triton)
-+ [Triton CLI and CloudAPI](https://docs.joyent.com/public-cloud/api-access/cloudapi)
++ [Triton CLI and CloudAPI documentation](https://docs.joyent.com/public-cloud/api-access/cloudapi)
++ Read more tutorials on the [Joyent blog](https://www.joyent.com/blog)
