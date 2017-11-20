@@ -1,7 +1,8 @@
 provider "triton" {
-    url = "https://${var.dc_name}.api.joyent.com"
-    account = "${var.triton_account}"
-    key_id = "${var.triton_key_id}"
+    # Commenting these out because they will take the SDC_URL, SDC_ACCOUNT, and SDC_KEY_ID env vars as defaults
+    # url = "https://${var.dc_name}.api.joyent.com"
+    # account = "${var.triton_account}"
+    # key_id = "${var.triton_key_id}"
 }
 
 data "triton_network" "public" {

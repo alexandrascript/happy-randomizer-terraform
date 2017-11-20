@@ -1,15 +1,3 @@
-variable "triton_account" {
-    default = "<username>"
-}
-
-variable "triton_key_id" {
-    default = "<fingerprint>"
-}
-
-variable "dc_name" {
-    default = "<dc_name>"
-}
-
 variable "production" {
   type = "string"
   default = "blue"
