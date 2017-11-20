@@ -5,28 +5,16 @@ provider "triton" {
     # key_id = "${var.triton_key_id}"
 }
 
+#
+# Details about all deployments of this application
+#
 data "triton_network" "public" {
     name = "Joyent-SDC-Public"
 }
 
-data "triton_image" "green_image" {
-    name = "${var.green_image_name}"
-    version = "${var.green_image_version}"
-    type = "lx-dataset"
-    most_recent = true
-}
-
-resource "triton_machine" "green_machine" {
-    count = "${var.green_count}"
-    name = "green_happy_${count.index + 1}"
-    package = "g4-highcpu-2G"
-    image = "${data.triton_image.green_image.id}"
-    networks = ["${data.triton_network.public.id}"]
-    cns {
-        services = ["${var.production == "green" ? var.service_name : var.staging }", "green-${var.service_name}"]
-    }
-}
-
+#
+# Details about the "blue" deployment
+#
 data "triton_image" "blue_image" {
     name = "${var.blue_image_name}"
     version = "${var.blue_image_version}"
@@ -41,6 +29,28 @@ resource "triton_machine" "blue_machine" {
     image = "${data.triton_image.blue_image.id}"
     networks = ["${data.triton_network.public.id}"]
     cns {
-        services = ["${var.production == "blue" ? var.service_name : var.staging }", "blue-${var.service_name}"]
+        services = ["${var.production == "blue" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
     }
 }
+
+#
+# Details about the "green" deployment
+#
+data "triton_image" "green_image" {
+    name = "${var.green_image_name}"
+    version = "${var.green_image_version}"
+    type = "lx-dataset"
+    most_recent = true
+}
+
+resource "triton_machine" "green_machine" {
+    count = "${var.green_count}"
+    name = "green_happy_${count.index + 1}"
+    package = "g4-highcpu-2G"
+    image = "${data.triton_image.green_image.id}"
+    networks = ["${data.triton_network.public.id}"]
+    cns {
+        services = ["${var.production == "green" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
+    }
+}
+

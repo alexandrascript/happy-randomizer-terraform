@@ -6,11 +6,6 @@ variable "production" {
   default = "blue"
 }
 
-variable "staging" {
-  type = "string"
-  default = "staging-happiness"
-}
-
 variable "service_name" {
 	default = "happiness"
 }
