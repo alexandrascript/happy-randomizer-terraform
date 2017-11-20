@@ -6,13 +6,6 @@ provider "triton" {
 }
 
 #
-# Details about all deployments of this application
-#
-data "triton_network" "public" {
-    name = "Joyent-SDC-Public"
-}
-
-#
 # Details about the "blue" deployment
 #
 data "triton_image" "blue_image" {
@@ -27,9 +20,9 @@ resource "triton_machine" "blue_machine" {
     name = "blue_happy_${count.index + 1}"
     package = "g4-highcpu-2G"
     image = "${data.triton_image.blue_image.id}"
-    networks = ["${data.triton_network.public.id}"]
+    networks = "${ var.service_networks }"
     cns {
-        services = ["${var.production == "blue" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
+        services = ["${var.service_production == "blue" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
     }
 }
 
@@ -48,9 +41,9 @@ resource "triton_machine" "green_machine" {
     name = "green_happy_${count.index + 1}"
     package = "g4-highcpu-2G"
     image = "${data.triton_image.green_image.id}"
-    networks = ["${data.triton_network.public.id}"]
+    networks = "${ var.service_networks }"
     cns {
-        services = ["${var.production == "green" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
+        services = ["${var.service_production == "green" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
     }
 }
 
