@@ -10,6 +10,20 @@ variable "dc_name" {
     default = "<dc_name>"
 }
 
+variable "production" {
+  type = "string"
+  default = "blue"
+}
+
+variable "staging" {
+  type = "string"
+  default = "staging-happiness"
+}
+
+variable "service_name" {
+	default = "happiness"
+}
+
 variable "green_image_name" {
     default = "happy_randomizer"
 }
