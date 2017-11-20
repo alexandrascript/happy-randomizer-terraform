@@ -43,7 +43,6 @@ resource "triton_machine" "green_machine" {
     image = "${data.triton_image.green_image.id}"
     networks = "${ var.service_networks }"
     cns {
-        services = ["${var.service_production == "green" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
+        services = ["${var.service_production == "green" ? var.service_name : "staging-${var.service_name}" }", "green-${var.service_name}"]
     }
 }
-
