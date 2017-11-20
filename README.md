@@ -29,6 +29,20 @@ variable "dc_name" {
 }
 ```
 
+## Troubleshooting
+
+If you receive an error similar to:
+
+```sh
+* provider.triton: Error Creating SSH Agent Signer: No key in the SSH Agent matches fingerprint: <ssh fingerprint>
+```
+
+Use `ssh-add` to fix it:
+
+```sh
+ssh-add <path to ssh key>
+```
+
 ## Additional resources
 
 + [Triton Terraform provider docs](https://github.com/terraform-providers/terraform-provider-triton)
