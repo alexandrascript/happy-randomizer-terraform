@@ -22,7 +22,7 @@ resource "triton_machine" "green_machine" {
     image = "${data.triton_image.green_image.id}"
     networks = ["${data.triton_network.public.id}"]
     cns {
-       services = ["${var.service_name}"]
+       services = ["${var.service_name}","green-${var.service_name}"]
     }
 }
 
@@ -40,6 +40,6 @@ resource "triton_machine" "blue_machine" {
     image = "${data.triton_image.blue_image.id}"
     networks = ["${data.triton_network.public.id}"]
     cns {
-       services = ["${var.service_name}"]
+       services = ["${var.service_name}","blue-${var.service_name}"]
     }
 }
