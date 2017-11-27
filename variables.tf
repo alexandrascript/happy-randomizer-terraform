@@ -14,11 +14,12 @@ variable "service_name" {
 # Details about the "blue" deployment
 #
 variable "blue_image_name" {
-    default = "ubuntu-16.04"
+    default = "happy_randomizer"
 }
 
 variable "blue_image_version" {
-    default = "20170403"
+    # default = "20170403"
+    default = "1.0.0"
 }
 
 variable "blue_count" {
@@ -30,11 +31,11 @@ variable "blue_count" {
 # Details about the "green" deployment
 #
 variable "green_image_name" {
-    default = "ubuntu-14.04"
+    default = "happy_randomizer"
 }
 
 variable "green_image_version" {
-    default = "20170403"
+    default = "1.1.0"
 }
 
 variable "green_count" {
