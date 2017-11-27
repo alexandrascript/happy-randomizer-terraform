@@ -6,10 +6,11 @@ provider "triton" {
 }
 
 #
-# Details about all deployments of this application
+# Common details about both "blue" and "green" deployments
 #
-data "triton_network" "public" {
-    name = "Joyent-SDC-Public"
+data "triton_network" "service_networks" {
+  count = "${length(var.service_networks)}"
+  name = "${element(var.service_networks, count.index)}"
 }
 
 #
@@ -27,9 +28,9 @@ resource "triton_machine" "blue_machine" {
     name = "blue_happy_${count.index + 1}"
     package = "g4-highcpu-2G"
     image = "${data.triton_image.blue_image.id}"
-    networks = ["${data.triton_network.public.id}"]
+    networks = ["${data.triton_network.service_networks.*.id}"]
     cns {
-        services = ["${var.production == "blue" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
+        services = ["${var.service_production == "blue" ? var.service_name : "staging-${var.service_name}" }", "blue-${var.service_name}"]
     }
 }
 
@@ -48,8 +49,8 @@ resource "triton_machine" "green_machine" {
     name = "green_happy_${count.index + 1}"
     package = "g4-highcpu-2G"
     image = "${data.triton_image.green_image.id}"
-    networks = ["${data.triton_network.public.id}"]
+    networks = ["${data.triton_network.service_networks.*.id}"]
     cns {
-        services = ["${var.production == "green" ? var.service_name : "staging-${var.service_name}" }", "green-${var.service_name}"]
+        services = ["${var.service_production == "green" ? var.service_name : "staging-${var.service_name}" }", "green-${var.service_name}"]
     }
 }
