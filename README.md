@@ -10,24 +10,10 @@ This repository is an extension of the [Happy Randomizer](https://github.com/hey
    + You'll need version 1.0 and version 1.1 of the Happy Randomizer. Details are in the repository's README.
 1. Once the images have been deployed, fork this repository.
    + The files refer to the images already deployed to Triton and do not require the local application.
-
-## Modifying the variables
-
-Replace the following variables in `variables.tf` with your information:
-
-```hcl
-variable "triton_account" {
-    default = "<username>"
-}
-
-variable "triton_key_id" {
-    default = "<fingerprint>"
-}
-
-variable "dc_name" {
-    default = "<dc_name>"
-}
-```
+1. To use the environment variables, you must be in the Triton environment before initializing Terraform.
+   ```sh
+   $ eval "$(triton env)"
+   ```
 
 ## Troubleshooting
 
