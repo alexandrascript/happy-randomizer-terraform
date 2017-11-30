@@ -19,7 +19,7 @@ This repository is an extension of the [Happy Randomizer](https://github.com/hey
 
 If you receive an error similar to:
 
-```sh
+```hcl
 * provider.triton: Error Creating SSH Agent Signer: No key in the SSH Agent matches fingerprint: <ssh fingerprint>
 ```
 
