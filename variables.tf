@@ -40,6 +40,12 @@ variable "blue_count" {
     default = "3"
 }
 
+variable "blue_package_name" {
+  type = "string"
+  description = "The package to use when making a blue deployment."
+  default = "g4-highcpu-128M" 
+}
+
 #
 # Details about the "green" deployment
 #
@@ -59,4 +65,10 @@ variable "green_count" {
     type = "string"
     description = "The number of 'green' instances to create."
     default = "3"
+}
+
+variable "green_package_name" {
+  type = "string"
+  description = "The package to use when making a green deployment."
+  default = "g4-highcpu-128M" 
 }

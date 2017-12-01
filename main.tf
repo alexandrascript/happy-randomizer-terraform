@@ -1,3 +1,7 @@
+terraform {
+  required_version = ">= 0.10.0"
+}
+
 provider "triton" {
     # Commenting these out because they will take the SDC_URL, SDC_ACCOUNT, and SDC_KEY_ID env vars as defaults
     # url = "https://${var.dc_name}.api.joyent.com"
@@ -26,7 +30,7 @@ data "triton_image" "blue_image" {
 resource "triton_machine" "blue_machine" {
     count = "${var.blue_count}"
     name = "blue_happy_${count.index + 1}"
-    package = "g4-highcpu-2G"
+    package = "${var.blue_package_name}"
     image = "${data.triton_image.blue_image.id}"
     networks = ["${data.triton_network.service_networks.*.id}"]
     cns {
@@ -47,7 +51,7 @@ data "triton_image" "green_image" {
 resource "triton_machine" "green_machine" {
     count = "${var.green_count}"
     name = "green_happy_${count.index + 1}"
-    package = "g4-highcpu-2G"
+    package = "${var.green_package_name}"
     image = "${data.triton_image.green_image.id}"
     networks = ["${data.triton_network.service_networks.*.id}"]
     cns {
