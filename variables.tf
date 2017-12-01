@@ -19,6 +19,7 @@ variable "service_networks" {
     default = ["Joyent-SDC-Public"]
 }
 
+
 #
 # Details about the "blue" deployment
 #
@@ -30,20 +31,20 @@ variable "blue_image_name" {
 
 variable "blue_image_version" {
     type = "string"
-     description = "The version of the image for the 'blue' deployment."
+    description = "The version of the image for the 'blue' deployment."
     default = "1.0.0"
 }
 
 variable "blue_count" {
     type = "string"
     description = "The number of 'blue' instances to create."
-    default = "3"
+    default = "1"
 }
 
 variable "blue_package_name" {
-  type = "string"
-  description = "The package to use when making a blue deployment."
-  default = "g4-highcpu-128M" 
+    type = "string"
+    description = "The package to use when making a blue deployment."
+    default = "g4-highcpu-128M" 
 }
 
 #
@@ -68,7 +69,7 @@ variable "green_count" {
 }
 
 variable "green_package_name" {
-  type = "string"
-  description = "The package to use when making a green deployment."
-  default = "g4-highcpu-128M" 
+    type = "string"
+    description = "The package to use when making a green deployment."
+    default = "g4-highcpu-128M" 
 }
